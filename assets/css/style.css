@@ -1,9 +1,11 @@
-.day {
-  background-color: white;
-  color: black;
+.non-display-form {
+  display: none;
 }
 
-.night {
-  background-color: black;
-  color: white;
+.non-display-greeting {
+  display: none;
+}
+
+.showing {
+  display: block;
 }
