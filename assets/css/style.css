@@ -1,5 +1,15 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
 body {
-  background-color: teal;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
 }
 
 .non-display-form {
@@ -21,4 +31,84 @@ body {
   width: 100%;
   height: 100%;
   z-index: -1;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-height: 500px;
+  color: rgb(22, 52, 99);
+  background-color: rgba(255, 255, 255, 0.658);
+  border-radius: 10px;
+  padding: 30px 25px;
+}
+
+input {
+  padding: 5px 0 5px 10px;
+  margin-top: 10px;
+  border: none;
+}
+
+input:active,
+input:focus {
+  outline: none;
+}
+
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  margin-top: 10px;
+  padding: 0;
+  overflow: auto;
+  padding-right: 10px;
+}
+
+ul::-webkit-scrollbar {
+  width: 5px;
+  background-color: white;
+}
+
+ul::-webkit-scrollbar-thumb {
+  background-color: rgb(22, 52, 99);
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  width: 150px;
+  margin-top: 5px;
+  font-weight: 700;
+}
+
+li span {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+button {
+  font-weight: 700;
+  border: none;
+  color: rgb(22, 52, 99);
+  background-color: #fff;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+button:active,
+button:focus {
+  outline: none;
+}
+
+.js-clock {
+  font-size: 80px;
+}
+
+.js-greeting {
+  margin-top: 10px;
 }
