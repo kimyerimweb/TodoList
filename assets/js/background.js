@@ -1,20 +1,14 @@
-const body = document.querySelector("body");
+const backColor = document.querySelector(".grow-background")
 
-function paintBackgoundImage(number){
-    const image = new Image();
-    image.src = `assets/images/${number}.jpg`; //변경 가능
-    image.classList.add("bgImg");
-    body.appendChild(image);
+function Setpercent() {
+  const currentTime = hours * 60 + minutes
+  const currentTimeRate = (currentTime / 1440) * 100
+  backColor.style.height = `${currentTimeRate}%`
 }
 
-function genRandom(){
-    const random = Math.ceil((Math.random()*3));
-    return random;
+function init() {
+  Setpercent()
+  setInterval(Setpercent, 1000)
 }
 
-function init(){
-    const randomNum = genRandom();
-    paintBackgoundImage(randomNum);
-}
-
-init();
+init()
