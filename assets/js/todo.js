@@ -1,71 +1,68 @@
-const todoForm = document.querySelector(".js-todo-form"),
-    todoInput = todoForm.querySelector("input"),
-    todoUl = document.querySelector(".todo-ul"),
-    TODOS_LS = 'currentToDos';
+const todoForm = document.querySelector(".js-todo-form")
+const todoInput = todoForm.querySelector("input")
+const todoUl = document.querySelector(".todo-ul")
+const TODO_LS = "currentTodoList"
 
-let todoArray = [],
-    initID = 1;
+let todoList = []
+let newID = 0
 
-function saveTodos(){
-    localStorage.setItem(TODOS_LS,JSON.stringify(todoArray));
+function saveTodos() {
+  localStorage.setItem(TODO_LS, JSON.stringify(todoList))
 }
 
-function deleteTodos(event){
-    const btn = event.target;
-    const li = btn.parentNode;
-    const removeTodosID = li.id;
-    todoUl.removeChild(li);
-    const cleanArray = todoArray.filter(function(todo){
-        return todo.id !== Number(removeTodosID);
-    })
-    todoArray = cleanArray;
-    saveTodos();
+function deleteTodos(e) {
+  const btn = e.target
+  const li = btn.parentNode
+  const removeContent = li.id
+  todoUl.removeChild(li)
+  const clearList = todoList.filter(function (element) {
+    return element.id !== Number(li.id)
+  })
+  todoList = clearList
+  saveTodos()
 }
 
-function paintTodos(text){
-    const li = document.createElement('li');
-    const btn = document.createElement('button');
-    btn.addEventListener("click",deleteTodos);
-    const span = document.createElement('span');
-    const newID = initID;
-    btn.innerText = 'delete';
-    span.innerText = text;
-    li.appendChild(span);
-    li.appendChild(btn);
-    li.id = newID;
-    todoUl.appendChild(li);
+function paintToDo(text) {
+  const li = document.createElement("li")
+  const delbtn = document.createElement("button")
+  const todo_span = document.createElement("span")
+  delbtn.addEventListener("click", deleteTodos)
+  newID++
+  delbtn.innerText = "delete"
+  todo_span.innerText = text
+  todoUl.appendChild(li)
+  li.id = newID
+  li.appendChild(todo_span)
+  li.appendChild(delbtn)
+  const obj = {
+    text: text,
+    id: newID,
+  }
+  todoList.push(obj)
+  saveTodos()
+}
 
-    const todoObj={
-        text: text,
-        id: newID,
+function handleSubmitTodos(e) {
+  e.preventDefault()
+
+  const currentTodos = todoInput.value
+  paintToDo(currentTodos)
+  todoInput.value = ""
+}
+
+function loadTodos() {
+  const str_toDos = localStorage.getItem(TODO_LS)
+  const toDos = JSON.parse(str_toDos)
+  if (toDos !== null) {
+    for (var k in toDos) {
+      paintToDo(toDos[k].text)
     }
-    todoArray.push(todoObj);
-    saveTodos();
-    initID++;
+  }
 }
 
-function handleSubmitTodos(event){
-    event.preventDefault();
-
-    const todos = todoInput.value;
-    paintTodos(todos);
-    todoInput.value='';
+function init() {
+  loadTodos()
+  todoForm.addEventListener("submit", handleSubmitTodos)
 }
 
-function loadToDoList(){
-    const currentTODOS = localStorage.getItem(TODOS_LS);
-    if(currentTODOS!==null)
-    {
-        const parseTodos = JSON.parse(currentTODOS);
-        parseTodos.forEach(function(todo) {
-            paintTodos(todo.text);
-        });
-    }
-}
-
-function init(){
-    loadToDoList();
-    todoForm.addEventListener("submit",handleSubmitTodos);
-}
-
-init();
+init()
