@@ -7,25 +7,34 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
   <body>
-    <div class="main">
-      <h1 class="js-clock">Clock Display</h1>
-      <form class="js-greeting-form non-display-form">
-        <input
-          class="js-greeting-input"
-          type="text"
-          placeholder="What's your name?"
-        />
-      </form>
-      <h2 class="js-greeting non-display-greeting">Greeting Message</h2>
-      <form class="js-todo-form">
-        <input type="text" placeholder="I'm going to..." />
-      </form>
-      <ul class="todo-ul"></ul>
-      <div class="grow-background"></div>
+    <div class="todo">
+      <div class="js-weatherAPI">
+        <span class="js-weather">weather</span>
+        <span class="js-temp">temperature</span>
+        <span class="js-location">location</span>
+      </div>
+
+      <div class="main">
+        <h1 class="js-clock">Clock Display</h1>
+        <form class="js-greeting-form non-display-form">
+          <input
+            class="js-greeting-input"
+            type="text"
+            placeholder="What's your name?"
+          />
+        </form>
+        <h2 class="js-greeting non-display-greeting">Greeting Message</h2>
+        <form class="js-todo-form">
+          <input type="text" placeholder="I'm going to..." />
+        </form>
+        <ul class="todo-ul"></ul>
+        <div class="grow-background"></div>
+      </div>
     </div>
     <script src="./assets/js/clock.js"></script>
     <script src="./assets/js/greeting.js"></script>
     <script src="./assets/js/todo.js"></script>
     <script src="./assets/js/background.js"></script>
+    <script src="./assets/js/weather.js"></script>
   </body>
 </html>
